@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Download, Github, Linkedin, MapPin } from "lucide-react";
+import { ArrowUpRight, Download, MapPin } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 
 const container = {
   hidden: {},
@@ -81,7 +82,7 @@ export function Hero() {
               aria-label="GitHub"
               className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white text-foreground transition-all hover:bg-secondary"
             >
-              <Github className="h-4 w-4" />
+              <GithubIcon className="h-4 w-4" />
             </a>
             <a
               href="https://linkedin.com/in/aryankondekar"
@@ -90,7 +91,7 @@ export function Hero() {
               aria-label="LinkedIn"
               className="grid h-11 w-11 place-items-center rounded-full border border-border bg-white text-foreground transition-all hover:bg-secondary"
             >
-              <Linkedin className="h-4 w-4" />
+              <LinkedinIcon className="h-4 w-4" />
             </a>
           </motion.div>
         </motion.div>

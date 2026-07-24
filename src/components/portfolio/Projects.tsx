@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github } from "lucide-react";
+import { GithubIcon } from "./BrandIcons";
 import { Reveal } from "./Reveal";
 
 type Project = {
@@ -151,7 +151,7 @@ export function Projects() {
                     aria-label={`${p.title} on GitHub`}
                     className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-foreground transition-all hover:bg-foreground hover:text-background"
                   >
-                    <Github className="h-4 w-4" />
+                    <GithubIcon className="h-4 w-4" />
                   </a>
                 </div>
                 <ul className="mt-5 space-y-2.5">

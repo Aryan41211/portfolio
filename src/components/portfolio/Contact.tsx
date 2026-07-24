@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Check, Copy, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { Check, Copy, Mail, MapPin } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "./BrandIcons";
 import { Reveal } from "./Reveal";
 
 const EMAIL = "aryankondekar16@gmail.com";
@@ -71,7 +72,7 @@ export function Contact() {
                 rel="noreferrer"
                 className="group flex items-center gap-3 rounded-2xl border border-border p-4 transition-all hover:border-foreground/20"
               >
-                <Github className="h-4 w-4 text-foreground" />
+                <GithubIcon className="h-4 w-4 text-foreground" />
                 <div className="min-w-0">
                   <div className="text-xs uppercase tracking-widest text-muted-foreground">
                     GitHub
@@ -87,7 +88,7 @@ export function Contact() {
                 rel="noreferrer"
                 className="group flex items-center gap-3 rounded-2xl border border-border p-4 transition-all hover:border-foreground/20"
               >
-                <Linkedin className="h-4 w-4 text-foreground" />
+                <LinkedinIcon className="h-4 w-4 text-foreground" />
                 <div className="min-w-0">
                   <div className="text-xs uppercase tracking-widest text-muted-foreground">
                     LinkedIn
