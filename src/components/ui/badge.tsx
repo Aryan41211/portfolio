@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/utils";
 import type { ForwardRefExoticComponent, RefAttributes, HTMLAttributes } from "react";
@@ -16,19 +17,26 @@ const variants = {
     "inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[12px] font-medium text-muted-foreground transition-all duration-200 hover:text-foreground hover:border-foreground/40 hover:shadow-sm",
 };
 
-export const Badge = ((props: BadgeProps) => {
+const BadgeComponent = (props: BadgeProps) => {
   const { variant = "default", className, children, ...rest } = props;
   return (
     <span className={cn(variants[variant], className)} {...rest}>
       {children}
     </span>
   );
-}) as ForwardRefExoticComponent<BadgeProps & RefAttributes<HTMLSpanElement>>;
+};
+BadgeComponent.displayName = "Badge";
 
-Badge.displayName = "Badge";
+export const Badge = memo(BadgeComponent) as ForwardRefExoticComponent<
+  BadgeProps & RefAttributes<HTMLSpanElement>
+>;
 
 /** Icon-only round button used in Hero social links — exact class match with premium interactions. */
-export function IconButton({ className, children, ...props }: HTMLMotionProps<"a">) {
+export const IconButton = memo(function IconButton({
+  className,
+  children,
+  ...props
+}: HTMLMotionProps<"a">) {
   return (
     <motion.a
       className={cn(
@@ -40,4 +48,5 @@ export function IconButton({ className, children, ...props }: HTMLMotionProps<"a
       {children}
     </motion.a>
   );
-}
+});
+IconButton.displayName = "IconButton";

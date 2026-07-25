@@ -42,6 +42,18 @@ export interface Project {
   pattern: ProjectPattern;
   /** Optional canonical GitHub URL for the project. */
   url?: string;
+  /** Key features displayed in the project modal. */
+  features?: string[];
+  /** Engineering highlights displayed in the project modal. */
+  engineering?: string[];
+  /** One-paragraph overview for the project modal. */
+  overview?: string;
+  /** Problem statement for the project modal. */
+  problem?: string;
+  /** Solution description for the project modal. */
+  solution?: string;
+  /** Architecture summary for the project modal. */
+  architecture?: string;
 }
 
 /** A single work-exposure entry (currently a single internship, structured for growth). */

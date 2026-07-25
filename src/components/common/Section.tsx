@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 import { Container } from "./Container";
 
 /**
@@ -9,11 +9,10 @@ import { Container } from "./Container";
  * - py-32 md:py-40 (vertical rhythm)
  * - Container inside
  */
-export function Section({
+const Section = memo(function Section({
   id,
   children,
   className = "",
-  /** Override default vertical padding */
   size = "default",
   ...props
 }: React.HTMLAttributes<HTMLElement> & {
@@ -26,11 +25,14 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-24 ${padding} ${className}`}
+      className={`scroll-mt-24 content-visibility ${padding} ${className}`}
       aria-labelledby={`${id}-heading`}
       {...props}
     >
       <Container>{children}</Container>
     </section>
   );
-}
+});
+Section.displayName = "Section";
+
+export { Section };

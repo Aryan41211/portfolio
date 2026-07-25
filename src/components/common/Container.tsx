@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 
 /** Max-width container used by every section (max-w-5xl + horizontal padding). */
-export function Container({
+const Container = memo(function Container({
   children,
   className = "",
   ...props
@@ -11,4 +11,7 @@ export function Container({
       {children}
     </div>
   );
-}
+});
+Container.displayName = "Container";
+
+export { Container };

@@ -10,6 +10,30 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
+function SectionLabel({ children }: { children: string }) {
+  return (
+    <h3 className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+      {children}
+    </h3>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <div className="space-y-2.5">
+      {items.map((item, i) => (
+        <div key={i} className="flex gap-2.5 text-[14px] leading-relaxed text-muted-foreground">
+          <span
+            className="mt-2 h-1 w-1 shrink-0 rounded-full bg-foreground/50"
+            aria-hidden="true"
+          />
+          <span>{item}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function ProjectModal({ project, onClose }: ProjectModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -96,20 +120,72 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             </h2>
             <p className="mt-2 text-base text-muted-foreground md:text-lg">{project.subtitle}</p>
 
-            <div className="mt-8 space-y-4">
-              {project.highlights.map((h, j) => (
-                <div
-                  key={j}
-                  className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
-                >
-                  <span
-                    className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-foreground"
-                    aria-hidden="true"
-                  />
-                  <span>{h}</span>
-                </div>
-              ))}
-            </div>
+            {project.overview && (
+              <div className="mt-8 space-y-3">
+                <SectionLabel>Overview</SectionLabel>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
+                  {project.overview}
+                </p>
+              </div>
+            )}
+
+            {project.problem && (
+              <div className="mt-7 space-y-3">
+                <SectionLabel>Problem Statement</SectionLabel>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
+                  {project.problem}
+                </p>
+              </div>
+            )}
+
+            {project.solution && (
+              <div className="mt-7 space-y-3">
+                <SectionLabel>Solution</SectionLabel>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
+                  {project.solution}
+                </p>
+              </div>
+            )}
+
+            {project.features && (
+              <div className="mt-8 space-y-3">
+                <SectionLabel>Key Features</SectionLabel>
+                <BulletList items={project.features} />
+              </div>
+            )}
+
+            {project.engineering && (
+              <div className="mt-7 space-y-3">
+                <SectionLabel>Engineering Highlights</SectionLabel>
+                <BulletList items={project.engineering} />
+              </div>
+            )}
+
+            {project.architecture && (
+              <div className="mt-7 space-y-3">
+                <SectionLabel>Architecture Summary</SectionLabel>
+                <p className="text-[15px] leading-relaxed text-muted-foreground">
+                  {project.architecture}
+                </p>
+              </div>
+            )}
+
+            {!project.features && !project.engineering && project.highlights && (
+              <div className="mt-8 space-y-4">
+                {project.highlights.map((h, j) => (
+                  <div
+                    key={j}
+                    className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-foreground"
+                      aria-hidden="true"
+                    />
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className="mt-8 flex flex-wrap gap-1.5">
               {project.stack.map((s) => (

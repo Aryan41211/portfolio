@@ -245,3 +245,9 @@ html.preload *::after {
     linear-gradient(var(--color-background), var(--color-background)) padding-box,
     linear-gradient(135deg, var(--color-border), var(--color-muted)) border-box;
 }
+
+/* Content-visibility: defer off-screen section rendering */
+.content-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}
