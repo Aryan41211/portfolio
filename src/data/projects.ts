@@ -78,6 +78,55 @@ export const PROJECTS: ReadonlyArray<Project> = [
     url: "https://github.com/Aryan41211/Nyaysaathi",
   },
   {
+    title: "Adaptive RAG",
+    subtitle: "Agentic AI Chatbot with Intelligent RAG",
+    period: "May 2026",
+    stack: [
+      "Python",
+      "LangGraph",
+      "LangChain",
+      "FastAPI",
+      "Qdrant",
+      "FAISS",
+      "MongoDB (Motor)",
+      "OpenAI",
+      "Tavily",
+      "Streamlit",
+    ],
+    highlights: [
+      "Built an agentic RAG system using LangGraph orchestration with dynamic query routing across three pipelines: indexed document retrieval, general LLM knowledge, and real-time web search via Tavily.",
+      "Implemented a self-correcting retrieval pipeline with relevance grading, query rewriting for optimized retrieval, and a ReAct agent for intelligent tool selection.",
+      "Developed a FastAPI backend with MongoDB chat history, Qdrant vector search, and a Streamlit frontend with PDF/TXT document upload and session-based conversation management.",
+    ],
+    features: [
+      "Intelligent query routing with three processing pipelines: Index (document retrieval), General (LLM knowledge), and Search (real-time web via Tavily)",
+      "LangGraph multi-agent orchestration with query analysis, retrieval, relevance grading, query rewriting, and response generation nodes",
+      "ReAct agent framework for reasoning and acting with integrated retrieval and web search tools",
+      "Document processing with intelligent chunking (1000 chars, 150 overlap) and Qdrant vector similarity search",
+      "MongoDB-backed persistent chat history with session tracking and full context retention",
+      "Streamlit web interface with PDF/TXT document upload, authentication, and real-time chat",
+      "FastAPI REST API with POST /rag/query and POST /rag/documents/upload endpoints",
+    ],
+    engineering: [
+      "LangGraph state machine with 7 specialized nodes: query_analysis, retriever, grade, rewrite, generate, web_search, and general_llm with conditional routing",
+      "FastAPI backend with async MongoDB (Motor) for non-blocking chat history operations and Pydantic-validated request/response schemas",
+      "Qdrant vector database for efficient similarity-based document retrieval with configurable collection management",
+      "Relevance grading system using LLM-as-a-judge to evaluate retrieved document quality with automatic query rewriting on low relevance",
+      "Multi-page Streamlit frontend with session-based authentication and document upload to FastAPI backend",
+      "Configurable via pydantic-settings with OpenAI, Tavily, Qdrant, and MongoDB environment variables",
+    ],
+    overview:
+      "Built an agentic RAG system powered by LangGraph orchestration that dynamically routes queries across indexed document retrieval, general LLM knowledge, and real-time web search, with self-correcting retrieval, relevance grading, and a Streamlit frontend.",
+    problem:
+      "Traditional RAG systems use a fixed retrieval strategy for all queries, leading to poor results when the query requires general knowledge (not in documents) or real-time information (not in the index), and lack mechanisms to detect and correct low-quality retrievals.",
+    solution:
+      "Adaptive RAG uses LangGraph to classify each query into one of three routes — Index, General, or Search — and executes a specialized pipeline. A self-correcting loop grades retrieved document relevance and rewrites queries for better results when relevance is low, ensuring high-quality responses.",
+    architecture:
+      "LangGraph state machine with 7 nodes orchestrates the pipeline. FastAPI serves REST endpoints. Qdrant provides vector search over chunked documents. MongoDB persists chat history. Streamlit renders the UI. Tavily enables real-time web search. The ReAct agent coordinates retrieval and web search tool usage.",
+    pattern: "grid",
+    url: "https://github.com/Aryan41211/Adaptive-rag",
+  },
+  {
     title: "Retrieval Intelligence Platform",
     subtitle: "Production-Grade RAG Platform",
     period: "Jun 2026 — Jul 2026",
