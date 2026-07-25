@@ -11,7 +11,7 @@ export function Experience() {
 
       {EXPERIENCE.map((exp) => (
         <Reveal key={exp.role}>
-          <motion.div
+          <motion.article
             whileHover={CARD_HOVER}
             className="relative rounded-3xl border border-border bg-card p-8 md:p-12 transition-all duration-200 hover:border-foreground/20"
           >
@@ -47,7 +47,7 @@ export function Experience() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </motion.article>
         </Reveal>
       ))}
     </Section>

@@ -58,6 +58,7 @@ export function Navbar() {
           href="#home"
           className="text-sm font-semibold tracking-tight text-foreground"
           aria-label="Go to top"
+          title="Back to top"
         >
           ANK<span className="text-muted-foreground">.</span>
         </a>
@@ -97,6 +98,7 @@ export function Navbar() {
             download
             className="hidden rounded-full bg-foreground px-4 py-1.5 text-[13px] font-medium text-background transition-all hover:opacity-90 md:inline-block"
             aria-label="Download resume"
+            title="Download resume (PDF)"
           >
             Resume
           </a>
@@ -194,6 +196,7 @@ export function Navbar() {
               href="/Aryan_Kondekar_Resume.pdf"
               download
               className="mt-1 block rounded-xl bg-foreground px-4 py-2.5 text-center text-sm font-medium text-background transition-all hover:opacity-90"
+              title="Download resume (PDF)"
             >
               Download Resume
             </a>

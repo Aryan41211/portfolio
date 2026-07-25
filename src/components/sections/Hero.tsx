@@ -69,6 +69,7 @@ export function Hero() {
             <Button asChild size="md" whileHover={{ y: -2 }} whileTap={BUTTON_PRESS}>
               <a
                 href="#projects"
+                title="View featured projects"
                 className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-all hover:opacity-90"
               >
                 View Projects
@@ -88,6 +89,7 @@ export function Hero() {
               <a
                 href={RESUME.href}
                 download
+                title={`Download ${RESUME.cta}`}
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 text-sm font-medium text-foreground transition-all hover:bg-secondary"
               >
                 <Download className="h-4 w-4" aria-hidden="true" />
@@ -103,6 +105,7 @@ export function Hero() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={social.label}
+                  title={social.label}
                   whileHover={ICON_BUTTON_HOVER}
                   whileTap={{ scale: 0.95 }}
                 >

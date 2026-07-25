@@ -15,7 +15,7 @@ export function Skills() {
           const Icon = g.icon;
           return (
             <Reveal key={g.title} delay={i * 0.05}>
-              <motion.div
+              <motion.article
                 whileHover={CARD_HOVER}
                 className="h-full rounded-3xl border border-border bg-card p-6 transition-all duration-200 hover:border-foreground/20 hover:shadow-[0_2px_20px_-8px_rgba(0,0,0,0.08)]"
               >
@@ -34,7 +34,7 @@ export function Skills() {
                     </Badge>
                   ))}
                 </div>
-              </motion.div>
+              </motion.article>
             </Reveal>
           );
         })}

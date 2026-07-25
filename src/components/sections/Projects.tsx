@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal, Section, SectionHeader } from "@/components/common";
 import { Badge, IconButton } from "@/components/ui";
 import { GithubIcon } from "@/components/common";
 import { PROJECTS } from "@/data";
 import { CARD_HOVER, ICON_BUTTON_HOVER } from "@/constants";
+import { ProjectModal } from "./ProjectModal";
+import type { Project } from "@/types";
 
 function Artwork({ pattern }: { pattern: "grid" | "waves" | "dots" | "rings" }) {
   return (
@@ -59,6 +62,8 @@ function Artwork({ pattern }: { pattern: "grid" | "waves" | "dots" | "rings" }) 
 }
 
 export function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <Section id="projects">
       <SectionHeader id="projects" />
@@ -68,7 +73,11 @@ export function Projects() {
           <Reveal key={p.title} delay={i * 0.05}>
             <motion.article
               whileHover={CARD_HOVER}
-              className="group flex h-full flex-col rounded-3xl border border-border bg-card p-6 transition-all duration-200 hover:border-foreground/20 hover:shadow-[0_2px_20px_-8px_rgba(0,0,0,0.08)] md:p-8"
+              onClick={(e) => {
+                if ((e.target as HTMLElement).closest("a")) return;
+                setSelectedProject(p);
+              }}
+              className="group flex h-full cursor-pointer flex-col rounded-3xl border border-border bg-card p-6 transition-all duration-200 hover:border-foreground/20 hover:shadow-[0_2px_20px_-8px_rgba(0,0,0,0.08)] md:p-8"
             >
               <Artwork pattern={p.pattern} />
               <div className="mt-6 flex items-start justify-between gap-4">
@@ -86,6 +95,7 @@ export function Projects() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`${p.title} on GitHub`}
+                  title={`${p.title} on GitHub`}
                   whileHover={ICON_BUTTON_HOVER}
                 >
                   <GithubIcon className="h-4 w-4" aria-hidden="true" />
@@ -116,6 +126,8 @@ export function Projects() {
           </Reveal>
         ))}
       </div>
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </Section>
   );
 }

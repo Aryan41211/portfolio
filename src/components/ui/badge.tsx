@@ -28,11 +28,7 @@ export const Badge = ((props: BadgeProps) => {
 Badge.displayName = "Badge";
 
 /** Icon-only round button used in Hero social links — exact class match with premium interactions. */
-export function IconButton({
-  className,
-  children,
-  ...props
-}: HTMLMotionProps<"a">) {
+export function IconButton({ className, children, ...props }: HTMLMotionProps<"a">) {
   return (
     <motion.a
       className={cn(

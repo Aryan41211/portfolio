@@ -78,23 +78,39 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, viewport-fit=cover",
+      },
       { title: SITE.title },
       { name: "description", content: SITE.description },
       { name: "author", content: SITE.author },
       {
         name: "keywords",
-        content: "machine learning, NLP, semantic search, MLOps, portfolio, AI engineer",
+        content:
+          "machine learning engineer, NLP, semantic search, MLOps, Python developer, AI portfolio, Aryan Kondekar, ML portfolio",
       },
+      { name: "theme-color", content: "#ffffff" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+      { name: "format-detection", content: "telephone=no" },
       { property: "og:title", content: SITE.title },
       { property: "og:description", content: SITE.description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: SITE.url },
       { property: "og:site_name", content: SITE.brandmark },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: `${SITE.url}/og-image.svg` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: SITE.title },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: SOCIAL_LINKS[0].handle },
+      { name: "twitter:creator", content: SOCIAL_LINKS[0].handle },
       { name: "twitter:title", content: SITE.title },
       { name: "twitter:description", content: SITE.description },
+      { name: "twitter:image", content: `${SITE.url}/og-image.svg` },
+      { name: "twitter:image:alt", content: SITE.title },
     ],
     links: [
       {
@@ -102,6 +118,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/favicon.ico" },
       { rel: "canonical", href: SITE.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
@@ -113,24 +131,67 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        innerHTML: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: SITE.author,
-          url: SITE.url,
-          jobTitle: "Machine Learning Engineer",
-          description: SITE.description,
-          knowsAbout: [
-            "Machine Learning",
-            "Natural Language Processing",
-            "Semantic Search",
-            "MLOps",
-            "Python",
-            "FastAPI",
-            "Deep Learning",
-          ],
-          sameAs: SOCIAL_LINKS.map((s) => s.href),
-        }),
+        innerHTML: JSON.stringify([
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: SITE.author,
+            url: SITE.url,
+            jobTitle: "Machine Learning Engineer",
+            description: SITE.description,
+            image: `${SITE.url}/og-image.svg`,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Pune",
+              addressCountry: "IN",
+            },
+            alumniOf: [
+              {
+                "@type": "CollegeOrUniversity",
+                name: "Savitribai Phule Pune University",
+              },
+            ],
+            knowsAbout: [
+              "Machine Learning",
+              "Natural Language Processing",
+              "Semantic Search",
+              "MLOps",
+              "Python",
+              "FastAPI",
+              "Deep Learning",
+              "scikit-learn",
+              "FAISS",
+            ],
+            sameAs: SOCIAL_LINKS.map((s) => s.href),
+            seeks: {
+              "@type": "JobPosting",
+              description: "Open to ML engineering roles and internships",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: SITE.brandmark,
+            url: SITE.url,
+            description: SITE.description,
+            author: {
+              "@type": "Person",
+              name: SITE.author,
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: SITE.title,
+            description: SITE.description,
+            url: SITE.url,
+            inLanguage: "en",
+            about: {
+              "@type": "Person",
+              name: SITE.author,
+            },
+          },
+        ]),
       },
       {
         innerHTML: `
@@ -141,6 +202,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             }
             if (theme === 'dark') {
               document.documentElement.classList.add('dark');
+              document.querySelector('meta[name="theme-color"]').setAttribute('content', '#212121');
             }
             document.documentElement.classList.remove('preload');
           })();

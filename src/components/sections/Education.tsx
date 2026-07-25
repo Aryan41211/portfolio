@@ -12,7 +12,7 @@ export function Education() {
       <div className="space-y-3">
         {EDUCATION.map((it, i) => (
           <Reveal key={it.degree} delay={i * 0.05}>
-            <motion.div
+            <motion.article
               whileHover={CARD_HOVER}
               className="grid gap-4 rounded-3xl border border-border bg-card p-6 transition-all duration-200 hover:border-foreground/20 md:grid-cols-[auto_1fr_auto] md:items-center md:p-8"
             >
@@ -28,7 +28,7 @@ export function Education() {
               <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground md:text-right">
                 {it.period}
               </div>
-            </motion.div>
+            </motion.article>
           </Reveal>
         ))}
       </div>
