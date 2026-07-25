@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE, SOCIAL_LINKS } from "@/constants";
+import { ThemeProvider } from "@/hooks";
 
 function NotFoundComponent() {
   return (
@@ -77,22 +79,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Aryan Nitin Kondekar — Machine Learning Engineer" },
+      { title: SITE.title },
+      { name: "description", content: SITE.description },
+      { name: "author", content: SITE.author },
       {
-        name: "description",
-        content:
-          "Portfolio of Aryan Nitin Kondekar — Machine Learning Engineer specializing in NLP, semantic search, and MLOps.",
+        name: "keywords",
+        content: "machine learning, NLP, semantic search, MLOps, portfolio, AI engineer",
       },
-      { name: "author", content: "Aryan Nitin Kondekar" },
-      { property: "og:title", content: "Aryan Nitin Kondekar — Machine Learning Engineer" },
-      {
-        property: "og:description",
-        content:
-          "Portfolio of Aryan Nitin Kondekar — Machine Learning Engineer specializing in NLP, semantic search, and MLOps.",
-      },
+      { property: "og:title", content: SITE.title },
+      { property: "og:description", content: SITE.description },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE.url },
+      { property: "og:site_name", content: SITE.brandmark },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: SOCIAL_LINKS[0].handle },
+      { name: "twitter:title", content: SITE.title },
+      { name: "twitter:description", content: SITE.description },
     ],
     links: [
       {
@@ -100,11 +102,49 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "canonical", href: SITE.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: SITE.author,
+          url: SITE.url,
+          jobTitle: "Machine Learning Engineer",
+          description: SITE.description,
+          knowsAbout: [
+            "Machine Learning",
+            "Natural Language Processing",
+            "Semantic Search",
+            "MLOps",
+            "Python",
+            "FastAPI",
+            "Deep Learning",
+          ],
+          sameAs: SOCIAL_LINKS.map((s) => s.href),
+        }),
+      },
+      {
+        innerHTML: `
+          (function() {
+            var theme = localStorage.getItem('theme');
+            if (!theme || theme === 'system') {
+              theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            if (theme === 'dark') {
+              document.documentElement.classList.add('dark');
+            }
+            document.documentElement.classList.remove('preload');
+          })();
+        `,
       },
     ],
   }),
@@ -116,11 +156,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth preload" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="overflow-x-hidden">
         {children}
         <Scripts />
       </body>
@@ -133,8 +173,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider>
+        <Outlet />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

@@ -21,7 +21,24 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/common/*": ["./src/components/common/*"],
+      "@/layout/*": ["./src/components/layout/*"],
+      "@/sections/*": ["./src/components/sections/*"],
+      "@/ui/*": ["./src/components/ui/*"],
+      "@/constants": ["./src/constants/index.ts"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/data": ["./src/data/index.ts"],
+      "@/data/*": ["./src/data/*"],
+      "@/hooks": ["./src/hooks/index.ts"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/types": ["./src/types/index.ts"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils": ["./src/utils/index.ts"],
+      "@/utils/*": ["./src/utils/*"]
     }
   }
 }

@@ -1,0 +1,37 @@
+import { GraduationCap } from "lucide-react";
+import { Reveal, Section, SectionHeader } from "@/components/common";
+import { EDUCATION } from "@/data";
+import { CARD_HOVER } from "@/constants";
+import { motion } from "framer-motion";
+
+export function Education() {
+  return (
+    <Section id="education">
+      <SectionHeader id="education" />
+
+      <div className="space-y-3">
+        {EDUCATION.map((it, i) => (
+          <Reveal key={it.degree} delay={i * 0.05}>
+            <motion.div
+              whileHover={CARD_HOVER}
+              className="grid gap-4 rounded-3xl border border-border bg-card p-6 transition-all duration-200 hover:border-foreground/20 md:grid-cols-[auto_1fr_auto] md:items-center md:p-8"
+            >
+              <div className="grid h-11 w-11 place-items-center rounded-xl border border-border bg-secondary/50">
+                <GraduationCap className="h-4 w-4 text-foreground" aria-hidden="true" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="text-lg font-semibold tracking-tight text-foreground md:text-xl leading-snug">
+                  {it.degree}
+                </h3>
+                <div className="mt-1 text-sm text-muted-foreground">{it.school}</div>
+              </div>
+              <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground md:text-right">
+                {it.period}
+              </div>
+            </motion.div>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
