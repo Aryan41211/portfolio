@@ -1,4 +1,4 @@
-import { Braces, Boxes, Container, Cpu, Sparkles } from "lucide-react";
+import { Braces, Boxes, Container, Cpu, Sparkles, Bot, Database, LineChart } from "lucide-react";
 import type { FocusArea, SkillGroup } from "@/types";
 
 /** Focus-area cards rendered in the About section. */
@@ -8,6 +8,10 @@ export const FOCUS_AREAS: ReadonlyArray<FocusArea> = [
   { label: "NLP", desc: "Sentence-transformers, embedding-based retrieval systems." },
   { label: "Backend APIs", desc: "FastAPI, Django REST Framework, Flask services." },
   { label: "MLOps", desc: "Model registries, drift detection, Docker, pytest." },
+  {
+    label: "Agentic AI",
+    desc: "LangGraph orchestration, multi-agent workflows, ReAct-based tool selection.",
+  },
 ];
 
 /** Skill-group cards rendered on the Skills section. */
@@ -32,12 +36,44 @@ export const SKILL_GROUPS: ReadonlyArray<SkillGroup> = [
   {
     icon: Boxes,
     title: "Frameworks & APIs",
-    items: ["FastAPI", "Django REST Framework", "Flask", "Streamlit"],
+    items: [
+      "FastAPI",
+      "Django REST Framework",
+      "Flask",
+      "Streamlit",
+      "OpenAI API",
+      "Anthropic API",
+      "Pydantic",
+    ],
   },
   {
     icon: Container,
     title: "MLOps & Infra",
-    items: ["Docker", "pytest", "Git", "GitHub", "SQLite", "Jupyter Notebook"],
+    items: [
+      "Docker",
+      "pytest",
+      "Git",
+      "GitHub",
+      "SQLite",
+      "Jupyter Notebook",
+      "MongoDB",
+      "SQLAlchemy",
+    ],
+  },
+  {
+    icon: Bot,
+    title: "Agentic AI & Orchestration",
+    items: ["LangGraph", "LangChain", "ReAct Agents", "Multi-Agent Systems"],
+  },
+  {
+    icon: Database,
+    title: "Vector Databases",
+    items: ["FAISS", "Qdrant", "ChromaDB"],
+  },
+  {
+    icon: LineChart,
+    title: "Evaluation & Observability",
+    items: ["RAGAS", "DeepEval", "MLflow", "Weights & Biases"],
   },
   {
     icon: Sparkles,
