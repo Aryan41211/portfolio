@@ -11,7 +11,7 @@ export const PROFILE: Profile = {
   brandmark: SITE.brandmark,
   location: "Pune, India",
   role: "Machine Learning Engineer",
-  taglines: ["Machine Learning Engineer", "Python Developer", "AI Enthusiast"],
+  taglines: ["Machine Learning Engineer", "Python Developer", "MLOps"],
   intro:
     "I build machine learning systems end-to-end — from semantic search over 12K+ document corpora with FAISS and sentence-transformers, to production MLOps pipelines with drift detection, model registries, and containerized inference APIs.",
   aboutHeadline: "Engineering ML systems that ship, not just notebooks that demo.",

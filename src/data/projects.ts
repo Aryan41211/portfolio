@@ -69,6 +69,18 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Tavily",
       "Streamlit",
     ],
+    stack: [
+      "Python",
+      "LangGraph",
+      "LangChain",
+      "FastAPI",
+      "Qdrant",
+      "FAISS",
+      "MongoDB (Motor)",
+      "OpenAI",
+      "Tavily",
+      "Streamlit",
+    ],
     highlights: [
       "Built an agentic RAG system using LangGraph orchestration with dynamic query routing across three pipelines: indexed document retrieval, general LLM knowledge, and real-time web search via Tavily.",
       "Implemented a self-correcting retrieval pipeline with relevance grading, query rewriting for optimized retrieval, and a ReAct agent for intelligent tool selection.",
@@ -99,7 +111,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Adaptive RAG uses LangGraph to classify each query into one of three routes — Index, General, or Search — and executes a specialized pipeline. A self-correcting loop grades retrieved document relevance and rewrites queries for better results when relevance is low, ensuring high-quality responses.",
     architecture:
       "LangGraph state machine with 7 nodes orchestrates the pipeline. FastAPI serves REST endpoints. Qdrant provides vector search over chunked documents. MongoDB persists chat history. Streamlit renders the UI. Tavily enables real-time web search. The ReAct agent coordinates retrieval and web search tool usage.",
-    pattern: "grid",
+    pattern: "diagonal",
     url: "https://github.com/Aryan41211/Adaptive-rag",
   },
   {
@@ -147,7 +159,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "EquiPilot AI automates the entire research pipeline using a LangGraph-powered multi-agent system: a router agent classifies query intent, market data/news/sentiment agents collect data in parallel, and a synthesis agent generates structured research reports with executive summaries, risk analysis, and cited sources — all exposed through a production-ready API and interactive dashboard.",
     architecture:
       "LangGraph state machine routes queries through specialized agents. The FastAPI layer handles validation, rate limiting, security, and request tracking. Streamlit polls for status and renders reports. Docker/Nginx provide production deployment with health checks.",
-    pattern: "grid",
+    pattern: "crosshatch",
     url: EQUIPILOT_REPO,
   },
   {
@@ -196,7 +208,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     overview:
       "Benchmarked five supervised ML models on real-world datasets, comparing Precision, Recall, F1 Score, Confusion Matrix, and Cross Validation with reproducible evaluation workflows.",
     pattern: "dots",
-    url: GITHUB_USER_URL,
+    url: "https://github.com/Aryan41211/ML-Model-Benchmarking",
   },
   {
     title: "Library Management System",

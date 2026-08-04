@@ -20,12 +20,12 @@ const Section = memo(function Section({
   children: ReactNode;
   size?: "default" | "compact";
 }) {
-  const padding = size === "compact" ? "py-24 md:py-32" : "py-32 md:py-40";
+  const padding = size === "compact" ? "py-16 md:py-24" : "py-20 md:py-28";
 
   return (
     <section
       id={id}
-      className={`scroll-mt-24 content-visibility ${padding} ${className}`}
+      className={`scroll-mt-24 ${padding} ${className}`}
       aria-labelledby={`${id}-heading`}
       {...props}
     >

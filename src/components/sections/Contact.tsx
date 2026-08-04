@@ -6,6 +6,7 @@ import { GithubIcon, LinkedinIcon } from "@/components/common";
 import { EMAIL, SOCIALS, PROFILE } from "@/data";
 import { BUTTON_PRESS } from "@/constants";
 import { useCopyToClipboard } from "@/hooks";
+import { submitContactForm } from "@/functions/contact";
 
 interface FormData {
   name: string;
@@ -101,12 +102,20 @@ export function Contact() {
 
     setStatus("loading");
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await submitContactForm({ data: formData });
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
       setTouched({});
       setErrors({});
-    } catch {
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      try {
+        const serverErrors = JSON.parse(msg);
+        setErrors(serverErrors);
+        setTouched({ name: true, email: true, message: true });
+      } catch {
+        // Not JSON — generic error
+      }
       setStatus("error");
     }
   };
@@ -121,7 +130,7 @@ export function Contact() {
       <SectionHeader id="contact" />
 
       <Reveal>
-        <div className="rounded-[2rem] border border-border bg-card p-8 md:p-16">
+        <div className="rounded-[2rem] border border-border bg-card p-8 md:p-12">
           <h3 className="max-w-3xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl leading-tight">
             {PROFILE.contactHeadline[0]}
             <br />

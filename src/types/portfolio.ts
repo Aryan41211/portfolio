@@ -30,7 +30,7 @@ export interface SectionMeta {
 }
 
 /** Decorative SVG artwork variant rendered on a project card header. */
-export type ProjectPattern = "grid" | "waves" | "dots" | "rings";
+export type ProjectPattern = "grid" | "waves" | "dots" | "rings" | "diagonal" | "crosshatch";
 
 /** A portfolio project entry. */
 export interface Project {

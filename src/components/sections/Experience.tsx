@@ -15,7 +15,7 @@ export function Experience() {
             whileHover={CARD_HOVER}
             className="relative rounded-3xl border border-border bg-card p-8 md:p-12 transition-all duration-200 hover:border-foreground/20"
           >
-            <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
+            <div className="grid gap-10 md:grid-cols-[auto_1fr]">
               <div>
                 <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                   {exp.period}
@@ -32,7 +32,7 @@ export function Experience() {
                   ))}
                 </div>
               </div>
-              <ul className="space-y-4" role="list">
+              <ul className="min-w-0 space-y-4" role="list">
                 {exp.highlights.map((b, i) => (
                   <li
                     key={i}

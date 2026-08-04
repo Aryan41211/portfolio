@@ -8,7 +8,7 @@ import { CARD_HOVER, ICON_BUTTON_HOVER } from "@/constants";
 import { ProjectModal } from "./ProjectModal";
 import type { Project } from "@/types";
 
-function Artwork({ pattern }: { pattern: "grid" | "waves" | "dots" | "rings" }) {
+function Artwork({ pattern }: { pattern: "grid" | "waves" | "dots" | "rings" | "diagonal" | "crosshatch" }) {
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-secondary/40">
       <svg
@@ -54,6 +54,29 @@ function Artwork({ pattern }: { pattern: "grid" | "waves" | "dots" | "rings" }) 
             {Array.from({ length: 12 }).map((_, i) => (
               <circle key={i} cx="200" cy="112" r={10 + i * 12} strokeWidth="0.6" />
             ))}
+          </g>
+        )}
+        {pattern === "diagonal" && (
+          <g stroke="currentColor" strokeWidth="0.5" className="text-foreground/18">
+            {Array.from({ length: 30 }).map((_, i) => (
+              <line key={`d${i}`} x1={i * 20 - 200} y1={0} x2={i * 20} y2={225} />
+            ))}
+            {Array.from({ length: 30 }).map((_, i) => (
+              <line key={`r${i}`} x1={i * 20} y1={0} x2={i * 20 - 200} y2={225} />
+            ))}
+            <rect x="150" y="62" width="100" height="100" rx="8" className="fill-foreground/5 stroke-foreground/25" strokeWidth="0.8" />
+          </g>
+        )}
+        {pattern === "crosshatch" && (
+          <g stroke="currentColor" strokeWidth="0.4" className="text-foreground/16">
+            {Array.from({ length: 22 }).map((_, i) => (
+              <line key={`c${i}`} x1={0} y1={i * 12} x2={400} y2={i * 12} strokeDasharray="4 6" />
+            ))}
+            {Array.from({ length: 35 }).map((_, i) => (
+              <line key={`v${i}`} x1={i * 12} y1={0} x2={i * 12} y2={225} strokeDasharray="4 6" />
+            ))}
+            <circle cx="200" cy="112" r="45" className="fill-foreground/8 stroke-foreground/30" strokeWidth="0.6" />
+            <circle cx="200" cy="112" r="25" className="fill-foreground/5 stroke-foreground/20" strokeWidth="0.5" />
           </g>
         )}
       </svg>

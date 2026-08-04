@@ -74,7 +74,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.15 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.5 0 0);
+  --muted-foreground: oklch(0.18 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.15 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -112,7 +112,7 @@
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.93 0 0);
   --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
+  --muted-foreground: oklch(0.76 0 0);
   --accent: oklch(0.2 0 0);
   --accent-foreground: oklch(0.93 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -246,8 +246,4 @@ html.preload *::after {
     linear-gradient(135deg, var(--color-border), var(--color-muted)) border-box;
 }
 
-/* Content-visibility: defer off-screen section rendering */
-.content-visibility {
-  content-visibility: auto;
-  contain-intrinsic-size: 500px;
-}
+

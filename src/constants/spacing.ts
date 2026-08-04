@@ -31,8 +31,8 @@ export const SPACING = {
 
   /** Section vertical rhythm */
   section: {
-    py: { base: 32, md: 40 }, // py-32 md:py-40
-    pySmall: { base: 24, md: 32 }, // py-24 md:py-32
+    py: { base: 20, md: 28 }, // py-20 md:py-28
+    pySmall: { base: 16, md: 24 }, // py-16 md:py-24
     px: 6, // px-6
   },
 

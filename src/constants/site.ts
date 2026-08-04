@@ -17,6 +17,9 @@ export const SITE = {
   locale: "en",
 } as const;
 
+/** Availability status — set to false to hide the "Available for opportunities" pill. */
+export const AVAILABLE = true;
+
 /** Canonical contact email — single source of truth for hero + contact + mailto. */
 export const EMAIL = "aryankondekar16@gmail.com";
 

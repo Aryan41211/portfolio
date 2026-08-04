@@ -11,7 +11,7 @@ export function About() {
 
       <div className="grid gap-12 md:grid-cols-5">
         <Reveal className="md:col-span-3">
-          <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl leading-tight">
+          <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-5xl leading-tight text-balance">
             {PROFILE.aboutHeadline}
           </h3>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground md:text-lg">
