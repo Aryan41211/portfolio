@@ -289,7 +289,10 @@ export function Contact() {
             </div>
           </form>
 
-          <div className="mt-12 grid gap-4 border-t border-border pt-10 md:grid-cols-3">
+          {/* Four cards: one per social plus location. The column count has to
+              track SOCIALS.length + 1 — at md:grid-cols-3 the fourth card was
+              stranded alone on a second row. */}
+          <div className="mt-12 grid gap-4 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-4">
             {SOCIALS.map((social) => {
               const Icon = SOCIAL_ICONS[social.id];
               return (
@@ -313,7 +316,7 @@ export function Contact() {
                 </a>
               );
             })}
-            <div className="flex items-center gap-3 rounded-2xl border border-border p-4 transition-all duration-200 hover:border-foreground/20 hover:shadow-sm">
+            <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-all duration-200">
               <MapPin className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
               <div className="min-w-0">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">
