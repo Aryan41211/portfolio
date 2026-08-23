@@ -3,8 +3,18 @@
  *
  * Same clustered-embedding idea, projected to 2D and rendered as plain SVG.
  * Computed once at module scope from a fixed seed so server and client emit
- * byte-identical markup — no hydration mismatch, no layout shift when the
- * real canvas takes over.
+ * identical markup — no hydration mismatch, no layout shift when the real
+ * canvas takes over.
+ *
+ * A seeded PRNG alone is NOT enough for that guarantee. Math.log, Math.cos and
+ * friends are implementation-defined in ECMAScript, and Node's V8 disagrees
+ * with the browser's in the last ULP — which is exactly what a Box-Muller
+ * gaussian here produced: cx=425.1054687148925 on the client against
+ * ...4 from the server, and a React hydration error for the whole tree.
+ *
+ * So everything below sticks to +, -, * and /, which IEEE-754 specifies
+ * exactly and every engine reproduces bit-for-bit, and the emitted
+ * coordinates are additionally quantised to 3 decimals.
  */
 
 const WIDTH = 800;
@@ -21,9 +31,23 @@ function makeRandom(seed: number) {
   };
 }
 
+/**
+ * Irwin-Hall approximation of a standard normal: the sum of 6 uniforms has
+ * variance 6/12, so centring and scaling by sqrt(2) gives unit variance.
+ * Visually indistinguishable from Box-Muller at this scale, and uses only
+ * exactly-specified arithmetic.
+ */
+const SQRT_2 = 1.4142135623730951;
+
 function gaussian(rand: () => number) {
-  const u = Math.max(rand(), 1e-6);
-  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * rand());
+  let sum = 0;
+  for (let i = 0; i < 6; i++) sum += rand();
+  return (sum - 3) * SQRT_2;
+}
+
+/** Quantise to 3 decimals so serialisation cannot differ between engines. */
+function q(n: number) {
+  return Math.round(n * 1000) / 1000;
 }
 
 interface Dot {
@@ -46,11 +70,11 @@ const { dots, links, anchorDot } = (() => {
     const c = centroids[i % CLUSTERS];
     const depth = rand();
     dots.push({
-      x: c.x + gaussian(rand) * 78,
-      y: c.y + gaussian(rand) * 78,
-      r: 1.1 + depth * 2.6,
+      x: q(c.x + gaussian(rand) * 78),
+      y: q(c.y + gaussian(rand) * 78),
+      r: q(1.1 + depth * 2.6),
       accent: rand() < 0.22,
-      opacity: 0.2 + depth * 0.55,
+      opacity: q(0.2 + depth * 0.55),
     });
   }
 

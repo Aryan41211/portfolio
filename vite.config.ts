@@ -15,4 +15,16 @@ export default defineConfig({
   nitro: {
     preset: "vercel",
   },
+  vite: {
+    server: {
+      watch: {
+        // Build output must be excluded from the dev watcher. Running
+        // `npm run build` while `npm run dev` is live tears down and rewrites
+        // these directories, and chokidar's lstat on the vanishing files
+        // raises an unhandled FSWatcher 'error' that kills the dev server:
+        //   Error: UNKNOWN: unknown error, lstat '.vercel/output/config.json'
+        ignored: ["**/.vercel/**", "**/.output/**", "**/.nitro/**", "**/.wrangler/**"],
+      },
+    },
+  },
 });
