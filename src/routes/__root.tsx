@@ -91,6 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "machine learning engineer, NLP, semantic search, MLOps, Python developer, AI portfolio, Aryan Kondekar, ML portfolio",
       },
       { name: "theme-color", content: "#ffffff" },
+      { name: "color-scheme", content: "light dark" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { name: "format-detection", content: "telephone=no" },
@@ -100,16 +101,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: SITE.url },
       { property: "og:site_name", content: SITE.brandmark },
       { property: "og:locale", content: "en_US" },
-      { property: "og:image", content: `${SITE.url}/og-image.svg` },
+      { property: "og:image", content: `${SITE.url}/og-image.png` },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { property: "og:image:alt", content: SITE.title },
+      { property: "og:image:type", content: "image/png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: SOCIAL_LINKS[0].handle },
       { name: "twitter:creator", content: SOCIAL_LINKS[0].handle },
       { name: "twitter:title", content: SITE.title },
       { name: "twitter:description", content: SITE.description },
-      { name: "twitter:image", content: `${SITE.url}/og-image.svg` },
+      { name: "twitter:image", content: `${SITE.url}/og-image.png` },
       { name: "twitter:image:alt", content: SITE.title },
     ],
     links: [
@@ -118,7 +120,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
-      { rel: "icon", href: "/favicon.ico", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/favicon.ico" },
       { rel: "canonical", href: SITE.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -144,7 +145,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             url: SITE.url,
             jobTitle: "Machine Learning Engineer",
             description: SITE.description,
-            image: `${SITE.url}/og-image.svg`,
+            image: `${SITE.url}/og-image.png`,
             address: {
               "@type": "PostalAddress",
               addressLocality: "Pune",
@@ -201,15 +202,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         innerHTML: `
           (function() {
-            var theme = localStorage.getItem('theme');
-            if (!theme || theme === 'system') {
-              theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            try {
+              var theme = null;
+              try { theme = localStorage.getItem('theme'); } catch (e) {}
+              if (!theme || theme === 'system') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+              }
+              if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) meta.setAttribute('content', '#212121');
+              }
+            } finally {
+              // Must always run: 'preload' disables every transition on the
+              // page, so a throw above would freeze the site's animation.
+              document.documentElement.classList.remove('preload');
             }
-            if (theme === 'dark') {
-              document.documentElement.classList.add('dark');
-              document.querySelector('meta[name="theme-color"]').setAttribute('content', '#212121');
-            }
-            document.documentElement.classList.remove('preload');
           })();
         `,
       },

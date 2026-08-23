@@ -6,7 +6,22 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi"] },
+  // Build output must be ignored explicitly: ESLint 9 lints **/*.mjs by
+  // default, so the prebuilt Vercel bundles (including a 2MB vendored
+  // three.js chunk) were being parsed on every `npm run lint`.
+  {
+    ignores: [
+      "dist",
+      "dist-ssr",
+      ".output",
+      ".vinxi",
+      ".vercel",
+      ".nitro",
+      ".wrangler",
+      ".tanstack",
+      "src/routeTree.gen.ts",
+    ],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],

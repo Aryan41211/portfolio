@@ -69,18 +69,6 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Tavily",
       "Streamlit",
     ],
-    stack: [
-      "Python",
-      "LangGraph",
-      "LangChain",
-      "FastAPI",
-      "Qdrant",
-      "FAISS",
-      "MongoDB (Motor)",
-      "OpenAI",
-      "Tavily",
-      "Streamlit",
-    ],
     highlights: [
       "Built an agentic RAG system using LangGraph orchestration with dynamic query routing across three pipelines: indexed document retrieval, general LLM knowledge, and real-time web search via Tavily.",
       "Implemented a self-correcting retrieval pipeline with relevance grading, query rewriting for optimized retrieval, and a ReAct agent for intelligent tool selection.",

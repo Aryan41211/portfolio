@@ -13,11 +13,11 @@ export function Experience() {
         <Reveal key={exp.role}>
           <motion.article
             whileHover={CARD_HOVER}
-            className="relative rounded-3xl border border-border bg-card p-8 md:p-12 transition-all duration-200 hover:border-foreground/20"
+            className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 transition-all duration-200 hover:border-brand-subtle hover:shadow-[0_20px_44px_-28px_var(--brand)] md:p-12"
           >
             <div className="grid gap-10 md:grid-cols-[auto_1fr]">
               <div>
-                <div className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                <div className="text-xs font-medium uppercase tracking-widest text-brand">
                   {exp.period}
                 </div>
                 <h3 className="mt-3 text-2xl font-semibold tracking-tight text-foreground leading-snug">
@@ -39,7 +39,7 @@ export function Experience() {
                     className="flex gap-3 text-[15px] leading-relaxed text-muted-foreground"
                   >
                     <span
-                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-foreground"
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-brand"
                       aria-hidden="true"
                     />
                     <span>{b}</span>

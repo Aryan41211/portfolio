@@ -134,7 +134,7 @@ export function Contact() {
           <h3 className="max-w-3xl text-4xl font-semibold tracking-tight text-foreground md:text-6xl leading-tight">
             {PROFILE.contactHeadline[0]}
             <br />
-            <span className="text-muted-foreground">{PROFILE.contactHeadline[1]}</span>
+            <span className="text-brand">{PROFILE.contactHeadline[1]}</span>
           </h3>
           <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg leading-relaxed">
             {PROFILE.contactParagraph}
@@ -148,7 +148,7 @@ export function Contact() {
             <a
               href={`mailto:${EMAIL}`}
               title={`Send email to ${EMAIL}`}
-              className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background transition-all duration-200 hover:opacity-90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-medium text-brand-foreground transition-all duration-200 hover:opacity-90 hover:shadow-[0_10px_28px_-12px_var(--brand)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             >
               <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
               <span className="truncate">{EMAIL}</span>
@@ -299,9 +299,9 @@ export function Contact() {
                   target="_blank"
                   rel="noreferrer noopener"
                   title={`${social.label} \u2014 ${social.handle}`}
-                  className="group flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-all duration-200 hover:border-foreground/20 hover:bg-secondary/30 hover:shadow-sm hover:-translate-y-0.5"
+                  className="group flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-subtle hover:bg-brand-muted hover:shadow-sm"
                 >
-                  <Icon className="h-4 w-4 shrink-0 text-foreground" aria-hidden="true" />
+                  <Icon className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
                   <div className="min-w-0">
                     <div className="text-xs uppercase tracking-widest text-muted-foreground">
                       {social.id === "github" ? "GitHub" : "LinkedIn"}
@@ -314,7 +314,7 @@ export function Contact() {
               );
             })}
             <div className="flex items-center gap-3 rounded-2xl border border-border p-4 transition-all duration-200 hover:border-foreground/20 hover:shadow-sm">
-              <MapPin className="h-4 w-4 shrink-0 text-foreground" aria-hidden="true" />
+              <MapPin className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
               <div className="min-w-0">
                 <div className="text-xs uppercase tracking-widest text-muted-foreground">
                   Location

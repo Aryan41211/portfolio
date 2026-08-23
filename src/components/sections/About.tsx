@@ -1,5 +1,4 @@
 import { Reveal, Section, SectionHeader } from "@/components/common";
-import { Badge } from "@/components/ui";
 import { PROFILE, FOCUS_AREAS } from "@/data";
 import { CARD_HOVER } from "@/constants";
 import { motion } from "framer-motion";
@@ -29,9 +28,15 @@ export function About() {
               <motion.article
                 key={f.label}
                 whileHover={CARD_HOVER}
-                className="rounded-2xl border border-border bg-card p-4 transition-all duration-200 hover:border-foreground/20 hover:shadow-[0_2px_20px_-8px_rgba(0,0,0,0.08)]"
+                className="group rounded-2xl border border-border bg-card p-4 transition-all duration-200 hover:border-brand-subtle hover:shadow-[0_12px_28px_-20px_var(--brand)]"
               >
-                <div className="text-sm font-semibold text-foreground">{f.label}</div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                  <span
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand transition-transform duration-200 group-hover:scale-150"
+                    aria-hidden="true"
+                  />
+                  {f.label}
+                </div>
                 <div className="mt-1 text-[13px] text-muted-foreground leading-relaxed">
                   {f.desc}
                 </div>

@@ -17,22 +17,62 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { resolvedTheme, toggleTheme } = useTheme();
 
+  // Elevation flag only — one boolean, rAF-throttled so a fast scroll cannot
+  // queue more work than the compositor can retire.
   useEffect(() => {
+    let frame = 0;
     const onScroll = () => {
-      setScrolled(window.scrollY > ANIMATION.scrollThresholdPx);
-      for (const id of TRACKABLE_SECTION_IDS) {
-        const el = document.getElementById(id);
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= ANIMATION.spyOffsetPx && rect.bottom >= ANIMATION.spyOffsetPx) {
-          setActive(id);
-          break;
-        }
-      }
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        setScrolled(window.scrollY > ANIMATION.scrollThresholdPx);
+      });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  // Scroll-spy via IntersectionObserver. The previous implementation called
+  // getBoundingClientRect() for every section on every scroll event, forcing a
+  // synchronous layout each time; the observer does the same job off the main
+  // thread. Sections mount lazily, so re-observe whenever the set changes.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Prefer whichever tracked section covers the spy line and is most
+        // visible, so overlapping sections do not fight over the pill.
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      {
+        // A band around the spy offset, so exactly one section owns it.
+        rootMargin: `-${ANIMATION.spyOffsetPx}px 0px -55% 0px`,
+        threshold: [0, 0.25, 0.5, 1],
+      },
+    );
+
+    const attach = () => {
+      for (const id of TRACKABLE_SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      }
+    };
+    attach();
+
+    // Below-fold sections are code-split and appear after hydration.
+    const mutations = new MutationObserver(attach);
+    mutations.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+      mutations.disconnect();
+    };
   }, []);
 
   return (
@@ -82,7 +122,7 @@ export function Navbar() {
                 {isActive && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="absolute inset-0 rounded-full bg-secondary"
+                    className="absolute inset-0 rounded-full bg-brand-muted ring-1 ring-inset ring-brand-subtle"
                     transition={MOTION_SPRING.navPill}
                     aria-hidden="true"
                   />
@@ -96,7 +136,7 @@ export function Navbar() {
           <a
             href="/Aryan_Kondekar_Resume.pdf"
             download
-            className="hidden rounded-full bg-foreground px-4 py-1.5 text-[13px] font-medium text-background transition-all hover:opacity-90 md:inline-block"
+            className="hidden rounded-full bg-brand px-4 py-1.5 text-[13px] font-medium text-brand-foreground transition-all hover:opacity-90 md:inline-block"
             aria-label="Download resume"
             title="Download resume (PDF)"
           >
@@ -195,7 +235,7 @@ export function Navbar() {
             <a
               href="/Aryan_Kondekar_Resume.pdf"
               download
-              className="mt-1 block rounded-xl bg-foreground px-4 py-2.5 text-center text-sm font-medium text-background transition-all hover:opacity-90"
+              className="mt-1 block rounded-xl bg-brand px-4 py-2.5 text-center text-sm font-medium text-brand-foreground transition-all hover:opacity-90"
               title="Download resume (PDF)"
             >
               Download Resume

@@ -12,9 +12,9 @@ const variants = {
   default:
     "inline-flex items-center rounded-full border border-border bg-secondary/50 px-2.5 py-1 text-[11px] font-medium text-foreground transition-colors duration-200",
   muted:
-    "inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[12px] font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground hover:border-foreground/40",
+    "inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[12px] font-medium text-muted-foreground transition-colors duration-200 hover:border-brand-subtle hover:bg-brand-muted hover:text-foreground",
   skill:
-    "inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[12px] font-medium text-muted-foreground transition-all duration-200 hover:text-foreground hover:border-foreground/40 hover:shadow-sm",
+    "inline-flex items-center rounded-full border border-border bg-card px-2.5 py-1 text-[12px] font-medium text-muted-foreground transition-all duration-200 hover:border-brand-subtle hover:bg-brand-muted hover:text-foreground hover:shadow-sm",
 };
 
 const BadgeComponent = (props: BadgeProps) => {
@@ -40,7 +40,7 @@ export const IconButton = memo(function IconButton({
   return (
     <motion.a
       className={cn(
-        "grid h-11 w-11 place-items-center rounded-full border border-border bg-card text-foreground transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:bg-secondary hover:shadow-sm hover:scale-[1.08] hover:rotate-2 active:scale-[0.95] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+        "grid h-11 w-11 place-items-center rounded-full border border-border bg-card text-foreground transition-all duration-200 ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-brand-subtle hover:bg-brand-muted hover:text-brand hover:shadow-sm hover:scale-[1.08] hover:rotate-2 active:scale-[0.95] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         className,
       )}
       {...props}

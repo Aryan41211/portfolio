@@ -22,6 +22,12 @@ export const PROFILE: Profile = {
   contactHeadline: ["Let's build something", "worth shipping."],
   contactParagraph:
     "Open to ML engineering roles, internships, and interesting collaborations. The fastest way to reach me is email.",
+  stats: [
+    { value: "12K+", label: "documents indexed" },
+    { value: "768-d", label: "embedding space" },
+    { value: "10", label: "stage RAG pipeline" },
+    { value: "6", label: "shipped projects" },
+  ],
 };
 
 /** Convenience re-exports so sections need only import from `@/data`. */
