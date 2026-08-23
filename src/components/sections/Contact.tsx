@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, Copy, Mail, MapPin, Send, Loader2 } from "lucide-react";
+import { Check, Copy, Mail, Send, Loader2 } from "lucide-react";
 import { Reveal, Section, SectionHeader } from "@/components/common";
 import { Button } from "@/components/ui";
 import { SOCIAL_ICONS } from "@/components/common";
@@ -289,10 +289,9 @@ export function Contact() {
             </div>
           </form>
 
-          {/* Four cards: one per social plus location. The column count has to
-              track SOCIALS.length + 1 — at md:grid-cols-3 the fourth card was
-              stranded alone on a second row. */}
-          <div className="mt-12 grid gap-4 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-4">
+          {/* One card per social. The column count tracks SOCIALS.length —
+              a mismatch strands the last card alone on its own row. */}
+          <div className="mt-12 grid gap-4 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {SOCIALS.map((social) => {
               const Icon = SOCIAL_ICONS[social.id];
               return (
@@ -316,17 +315,6 @@ export function Contact() {
                 </a>
               );
             })}
-            <div className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-all duration-200">
-              <MapPin className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
-              <div className="min-w-0">
-                <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Location
-                </div>
-                <div className="truncate text-sm font-medium text-foreground">
-                  {PROFILE.location}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </Reveal>
