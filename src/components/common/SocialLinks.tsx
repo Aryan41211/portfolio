@@ -1,14 +1,15 @@
-import { GithubIcon, LinkedinIcon } from "./BrandIcons";
+import { SOCIAL_ICONS } from "./BrandIcons";
 import { SOCIAL_LINKS } from "@/constants";
 import { IconButton } from "@/components/ui";
 import { ICON_BUTTON_HOVER } from "@/constants";
 
-/** Reusable GitHub + LinkedIn icon pair used in Hero and Contact. */
+/** Reusable social icon row. Currently unused: Hero and Contact each
+ *  inline their own variant. */
 export function SocialIconPair() {
   return (
     <div className="flex items-center gap-3" role="list" aria-label="Social links">
       {SOCIAL_LINKS.map((s) => {
-        const Icon = s.id === "github" ? GithubIcon : LinkedinIcon;
+        const Icon = SOCIAL_ICONS[s.id];
         return (
           <IconButton
             key={s.id}
@@ -31,7 +32,7 @@ export function SocialCardLinks() {
   return (
     <div className="grid gap-4" role="list" aria-label="Contact links">
       {SOCIAL_LINKS.map((s) => {
-        const Icon = s.id === "github" ? GithubIcon : LinkedinIcon;
+        const Icon = SOCIAL_ICONS[s.id];
         return (
           <a
             key={s.id}
@@ -47,7 +48,7 @@ export function SocialCardLinks() {
             />
             <div className="min-w-0">
               <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                {s.id === "github" ? "GitHub" : "LinkedIn"}
+                {s.label}
               </div>
               <div className="truncate text-sm font-medium text-foreground">{s.handle}</div>
             </div>

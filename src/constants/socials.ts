@@ -14,4 +14,16 @@ export const SOCIAL_LINKS: ReadonlyArray<SocialLink> = [
     href: "https://linkedin.com/in/aryankondekar",
     handle: "linkedin.com/in/aryankondekar",
   },
+  {
+    id: "x",
+    label: "X",
+    href: "https://x.com/AryanKondekar16",
+    handle: "x.com/AryanKondekar16",
+  },
 ] as const;
+
+/**
+ * The @-prefixed X username. Twitter card meta expects this form, not a URL,
+ * so it is stated once here rather than derived from `handle`.
+ */
+export const X_USERNAME = "@AryanKondekar16";

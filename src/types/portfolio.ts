@@ -87,7 +87,7 @@ export interface SkillGroup {
 
 /** Brand/social link surfaced in hero, contact, and footer. */
 export interface SocialLink {
-  id: "github" | "linkedin";
+  id: "github" | "linkedin" | "x";
   label: string;
   href: string;
   /** Visible handle portion (e.g. "github.com/Aryan41211"). */

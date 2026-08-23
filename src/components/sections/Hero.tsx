@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download, MapPin } from "lucide-react";
-import { Container, GithubIcon, LinkedinIcon } from "@/components/common";
+import { Container, SOCIAL_ICONS } from "@/components/common";
 import { HeroCanvas } from "@/components/three";
 import { Button, IconButton } from "@/components/ui";
 import { PROFILE } from "@/data";
@@ -115,7 +115,7 @@ export function Hero() {
               </a>
             </Button>
             {SOCIAL_LINKS.map((social) => {
-              const Icon = social.id === "github" ? GithubIcon : LinkedinIcon;
+              const Icon = SOCIAL_ICONS[social.id];
               return (
                 <IconButton
                   key={social.id}

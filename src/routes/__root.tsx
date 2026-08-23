@@ -11,7 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { SITE, SOCIAL_LINKS } from "@/constants";
+import { SITE, SOCIAL_LINKS, X_USERNAME } from "@/constants";
 import { ThemeProvider } from "@/hooks";
 
 function NotFoundComponent() {
@@ -107,8 +107,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:alt", content: SITE.title },
       { property: "og:image:type", content: "image/png" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: SOCIAL_LINKS[0].handle },
-      { name: "twitter:creator", content: SOCIAL_LINKS[0].handle },
+      // These were SOCIAL_LINKS[0].handle — i.e. "github.com/Aryan41211".
+      // Twitter/X expects an @username here and ignores anything else.
+      { name: "twitter:site", content: X_USERNAME },
+      { name: "twitter:creator", content: X_USERNAME },
       { name: "twitter:title", content: SITE.title },
       { name: "twitter:description", content: SITE.description },
       { name: "twitter:image", content: `${SITE.url}/og-image.png` },
@@ -137,7 +139,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     scripts: [
       {
         type: "application/ld+json",
-        innerHTML: JSON.stringify([
+        children: JSON.stringify([
           {
             "@context": "https://schema.org",
             "@type": "Person",
@@ -200,7 +202,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         ]),
       },
       {
-        innerHTML: `
+        children: `
           (function() {
             try {
               var theme = null;

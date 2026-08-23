@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Check, Copy, Mail, MapPin, Send, Loader2 } from "lucide-react";
 import { Reveal, Section, SectionHeader } from "@/components/common";
 import { Button } from "@/components/ui";
-import { GithubIcon, LinkedinIcon } from "@/components/common";
+import { SOCIAL_ICONS } from "@/components/common";
 import { EMAIL, SOCIALS, PROFILE } from "@/data";
 import { BUTTON_PRESS } from "@/constants";
 import { useCopyToClipboard } from "@/hooks";
@@ -291,7 +291,7 @@ export function Contact() {
 
           <div className="mt-12 grid gap-4 border-t border-border pt-10 md:grid-cols-3">
             {SOCIALS.map((social) => {
-              const Icon = social.id === "github" ? GithubIcon : LinkedinIcon;
+              const Icon = SOCIAL_ICONS[social.id];
               return (
                 <a
                   key={social.id}
@@ -304,7 +304,7 @@ export function Contact() {
                   <Icon className="h-4 w-4 shrink-0 text-brand" aria-hidden="true" />
                   <div className="min-w-0">
                     <div className="text-xs uppercase tracking-widest text-muted-foreground">
-                      {social.id === "github" ? "GitHub" : "LinkedIn"}
+                      {social.label}
                     </div>
                     <div className="truncate text-sm font-medium text-foreground">
                       {social.handle}
