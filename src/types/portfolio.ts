@@ -32,6 +32,58 @@ export interface SectionMeta {
 /** Decorative SVG artwork variant rendered on a project card header. */
 export type ProjectPattern = "grid" | "waves" | "dots" | "rings" | "diagonal" | "crosshatch";
 
+/**
+ * Visual role of a node in an architecture diagram. Drives fill and border
+ * treatment only — the layout is entirely grid-driven.
+ */
+export type DiagramNodeKind = "input" | "process" | "decision" | "store" | "output" | "external";
+
+/** A single box in a project architecture diagram. */
+export interface DiagramNode {
+  id: string;
+  label: string;
+  kind: DiagramNodeKind;
+  /** Zero-based grid column, left to right. */
+  col: number;
+  /** Zero-based grid row, top to bottom. */
+  row: number;
+  /**
+   * Playback order. Nodes sharing a step illuminate together — that is how
+   * parallel stages (three research agents, three router branches) are shown.
+   */
+  step: number;
+  /** Optional second line rendered beneath the label. */
+  detail?: string;
+  /**
+   * Repository-relative path to the code this node represents. When present
+   * (and the project has a `url`), the node becomes a link to that source on
+   * GitHub. A trailing slash marks a directory, which resolves to `/tree/`
+   * rather than `/blob/`.
+   */
+  source?: string;
+}
+
+/** A directed connection between two diagram nodes. */
+export interface DiagramEdge {
+  from: string;
+  to: string;
+  /** Short caption rendered at the midpoint (e.g. a routing branch name). */
+  label?: string;
+  /** Dashed edges denote conditional or optional paths. */
+  dashed?: boolean;
+}
+
+/** An animated architecture diagram describing a project's real data flow. */
+export interface ProjectDiagram {
+  /** Grid extent the node coordinates are laid out against. */
+  cols: number;
+  rows: number;
+  nodes: DiagramNode[];
+  edges: DiagramEdge[];
+  /** One-line description, also used as the diagram's accessible name. */
+  caption: string;
+}
+
 /** A portfolio project entry. */
 export interface Project {
   title: string;
@@ -54,6 +106,8 @@ export interface Project {
   solution?: string;
   /** Architecture summary for the project modal. */
   architecture?: string;
+  /** Animated data-flow diagram rendered above the architecture summary. */
+  diagram?: ProjectDiagram;
 }
 
 /** A single work-exposure entry (currently a single internship, structured for growth). */

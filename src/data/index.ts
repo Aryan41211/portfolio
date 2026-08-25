@@ -10,3 +10,4 @@ export * from "./experience";
 export * from "./education";
 export * from "./skills";
 export * from "./socials";
+export * from "./diagrams";

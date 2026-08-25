@@ -13,20 +13,20 @@ export const PROFILE: Profile = {
   role: "Machine Learning Engineer",
   taglines: ["Machine Learning Engineer", "Python Developer", "MLOps"],
   intro:
-    "I build machine learning systems end-to-end — from semantic search over 12K+ document corpora with FAISS and sentence-transformers, to production MLOps pipelines with drift detection, model registries, and containerized inference APIs.",
+    "I build machine learning systems end-to-end — contrastive models trained from scratch on a 6GB GPU, agentic RAG pipelines with hybrid retrieval and self-correcting loops, and MLOps platforms with drift detection, model registries, and containerized inference.",
   aboutHeadline: "Engineering ML systems that ship, not just notebooks that demo.",
   aboutParagraphs: [
     "I'm a Computer Science undergraduate focused on building production-grade machine learning software — the layer where models meet APIs, pipelines, and monitoring.",
-    "My work spans semantic search over legal document corpora, end-to-end MLOps observability platforms with drift detection, and modular backend services built with FastAPI and Django REST Framework.",
+    "My work spans multimodal encoders trained from scratch under hard hardware constraints, agentic retrieval systems orchestrated with LangGraph, end-to-end MLOps observability platforms with drift detection, and modular backend services built with FastAPI and Django REST Framework.",
   ],
   contactHeadline: ["Let's build something", "worth shipping."],
   contactParagraph:
     "Open to ML engineering roles, internships, and interesting collaborations. The fastest way to reach me is email.",
   stats: [
-    { value: "12K+", label: "documents indexed" },
-    { value: "768-d", label: "embedding space" },
-    { value: "10", label: "stage RAG pipeline" },
-    { value: "6", label: "shipped projects" },
+    { value: "100K+", label: "lines of Python shipped" },
+    { value: "92×", label: "above-chance retrieval" },
+    { value: "4", label: "LLM providers integrated" },
+    { value: "9", label: "shipped projects" },
   ],
 };
 

@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui";
-import { GithubIcon } from "@/components/common";
+import { ArchitectureDiagram, GithubIcon } from "@/components/common";
+import { PROJECT_DIAGRAMS } from "@/data";
 import type { Project } from "@/types";
 
 interface ProjectModalProps {
@@ -74,6 +75,10 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project, handleKeyDown]);
 
+  // An inline `diagram` on the project wins; otherwise fall back to the shared
+  // catalogue keyed by title, so adding a diagram never means editing content.
+  const diagram = project ? (project.diagram ?? PROJECT_DIAGRAMS[project.title]) : undefined;
+
   return (
     <AnimatePresence>
       {project && (
@@ -98,7 +103,7 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ type: "spring", stiffness: 380, damping: 32, mass: 0.8 }}
-            className="relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-3xl border border-border bg-card p-8 shadow-2xl md:p-12"
+            className="relative z-10 w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-border bg-card p-8 shadow-2xl md:p-12"
           >
             <button
               ref={closeRef}
@@ -158,6 +163,17 @@ function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="mt-7 space-y-3">
                 <SectionLabel>Engineering Highlights</SectionLabel>
                 <BulletList items={project.engineering} />
+              </div>
+            )}
+
+            {diagram && (
+              <div className="mt-8 space-y-3">
+                <SectionLabel>Data Flow</SectionLabel>
+                <ArchitectureDiagram
+                  diagram={diagram}
+                  playKey={project.title}
+                  repoUrl={project.url}
+                />
               </div>
             )}
 
