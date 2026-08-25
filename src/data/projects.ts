@@ -370,39 +370,4 @@ export const PROJECTS: ReadonlyArray<Project> = [
     pattern: "rings",
     url: `${GITHUB_USER_URL}/ML-Model-Benchmarking`,
   },
-  {
-    title: "Library Management System",
-    subtitle: "Layered Domain Core with CLI and Web Interfaces",
-    period: "Jan 2026 — Apr 2026",
-    stack: ["Python", "Flask", "pytest", "OOP", "Role-Based Access Control"],
-    highlights: [
-      "Built a library management system with two front doors over one domain core — an interactive CLI and a Flask web app — sharing the same catalog, auth, and transaction layers.",
-      "Modelled the domain across three explicit service layers over a swappable storage interface, with a JSON backend seeded to 400+ book records across 20+ categories.",
-      "Covered the core with a pytest suite spanning domain models, each service layer, the storage backend, and the web routes.",
-    ],
-    features: [
-      "Two interfaces over one core — an interactive CLI and a Flask web app with admin and member dashboards",
-      "Admin and member roles with per-role permissions across catalog and transaction actions",
-      "Borrow and return flow with due-date tracking, overdue detection, and per-member borrowing limits",
-      "Multi-field catalog search across title, author, category, and ISBN, backed by an ISBN index",
-      "Library statistics and report generation over the live catalog and transaction log",
-      "Seeded dataset of 400+ books across 20+ categories, exercising the search and lending paths realistically",
-    ],
-    engineering: [
-      "Three service layers — auth, catalog, and transactions — sitting over a BaseStorage interface, so the JSON backend is one implementation rather than a built-in assumption",
-      "In-memory ISBN index maintained alongside the catalog, keeping lookups constant-time as the collection grows",
-      "Domain models with explicit to_dict and from_dict boundaries, so the persistence format never leaks into business logic",
-      "Typed exception hierarchy — book not found, book unavailable, duplicate book, invalid input — instead of bare raises at the call site",
-      "Flask app assembled through an application factory with one blueprint per concern: auth, books, transactions, and admin",
-      "pytest suite combining per-layer unit tests with integration tests against the web routes",
-    ],
-    overview:
-      "A library management system built as a layered domain core with two interchangeable front ends — an interactive CLI and a Flask web app — over a storage interface designed to be swapped without touching business logic.",
-    problem:
-      "Small management systems usually grow interface-first: persistence, permissions, and business rules end up duplicated across the CLI and the web app, so a rule change has to be made twice and the two drift apart.",
-    solution:
-      "The domain lives in three service layers over a storage interface, and both the CLI and the Flask app are thin callers into it. Rules are written once, the JSON backend can be replaced without rewriting business logic, and each layer is unit-testable on its own.",
-    pattern: "crosshatch",
-    url: `${GITHUB_USER_URL}/library-management-system`,
-  },
 ];

@@ -132,27 +132,6 @@ export function Hero() {
               );
             })}
           </motion.div>
-
-          {/* Headline metrics — the numbers that would otherwise stay buried
-              in project bullet text. */}
-          <motion.dl
-            variants={HERO_VARIANTS.item}
-            className="mt-14 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-6 border-t border-border pt-8 sm:grid-cols-4"
-          >
-            {PROFILE.stats.map((stat) => (
-              <div key={stat.label}>
-                <dt className="sr-only">{stat.label}</dt>
-                <dd>
-                  <span className="block text-2xl font-semibold tracking-tight text-foreground tabular-nums md:text-3xl">
-                    {stat.value}
-                  </span>
-                  <span className="mt-1 block text-[13px] leading-snug text-muted-foreground">
-                    {stat.label}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </motion.dl>
         </motion.div>
       </Container>
     </section>

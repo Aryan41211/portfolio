@@ -148,14 +148,6 @@ export interface SocialLink {
   handle: string;
 }
 
-/** A headline number surfaced under the hero copy. */
-export interface ProfileStat {
-  /** The number itself, pre-formatted (e.g. "12K+"). */
-  value: string;
-  /** What the number counts. */
-  label: string;
-}
-
 /** Public profile metadata used across the site. */
 export interface Profile {
   /** First + middle initials rendered in the hero (e.g. "Aryan Nitin"). */
@@ -180,6 +172,4 @@ export interface Profile {
   contactHeadline: string[];
   /** Contact-section supporting paragraph. */
   contactParagraph: string;
-  /** Headline metrics rendered as a strip beneath the hero CTAs. */
-  stats: ProfileStat[];
 }
