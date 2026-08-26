@@ -347,27 +347,4 @@ export const PROJECTS: ReadonlyArray<Project> = [
     pattern: "diagonal",
     url: `${GITHUB_USER_URL}/Nyaysaathi`,
   },
-  {
-    title: "Supervised ML Model Benchmarking",
-    subtitle: "Classification Model Comparison Suite",
-    period: "Jan 2025 — Mar 2025",
-    stack: ["Python", "scikit-learn", "NumPy", "Pandas", "Matplotlib"],
-    highlights: [
-      "Benchmarked five supervised classification models on real-world datasets under one shared evaluation methodology, so results compared like for like.",
-      "Evaluated with confusion matrices, precision, recall, F1, and cross-validation, and documented reproducible workflows alongside the results.",
-    ],
-    features: [
-      "Five supervised classification models benchmarked on real-world datasets",
-      "Comparison across precision, recall, F1 score, confusion matrix, and cross-validation",
-      "Reproducible evaluation workflows documented end to end",
-    ],
-    engineering: [
-      "A single evaluation methodology applied identically across every model, so differences reflect the model and not the harness",
-      "Reproducible workflows documented in the repository rather than left implicit in notebook state",
-    ],
-    overview:
-      "A comparison suite that benchmarks five supervised classification models on real-world datasets under one consistent evaluation methodology, reporting precision, recall, F1, confusion matrices, and cross-validated scores.",
-    pattern: "rings",
-    url: `${GITHUB_USER_URL}/ML-Model-Benchmarking`,
-  },
 ];

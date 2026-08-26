@@ -402,42 +402,6 @@ const NYAYSAATHI: ProjectDiagram = {
   ],
 };
 
-const ML_BENCHMARKING: ProjectDiagram = {
-  cols: 4,
-  rows: 2,
-  caption:
-    "One harness, five models — every difference in the report comes from the model, not the setup.",
-  nodes: [
-    { id: "data", label: "Dataset", kind: "input", col: 0, row: 0, step: 0 },
-    {
-      id: "prep",
-      label: "Preprocessing",
-      detail: "shared pipeline",
-      kind: "process",
-      col: 1,
-      row: 0,
-      step: 1,
-    },
-    { id: "models", label: "Five Classifiers", kind: "process", col: 2, row: 0, step: 2 },
-    { id: "cv", label: "Cross-Validation", kind: "process", col: 2, row: 1, step: 3 },
-    {
-      id: "report",
-      label: "Metric Report",
-      detail: "P · R · F1 · matrix",
-      kind: "output",
-      col: 3,
-      row: 1,
-      step: 4,
-    },
-  ],
-  edges: [
-    { from: "data", to: "prep" },
-    { from: "prep", to: "models" },
-    { from: "models", to: "cv" },
-    { from: "cv", to: "report" },
-  ],
-};
-
 const VECTORMIND: ProjectDiagram = {
   cols: 5,
   rows: 3,
@@ -742,5 +706,4 @@ export const PROJECT_DIAGRAMS: Readonly<Record<string, ProjectDiagram>> = {
   "Adaptive RAG": ADAPTIVE_RAG,
   "EquiPilot AI": EQUIPILOT_AI,
   NyaySaathi: NYAYSAATHI,
-  "Supervised ML Model Benchmarking": ML_BENCHMARKING,
 };
