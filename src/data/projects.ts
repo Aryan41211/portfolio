@@ -45,7 +45,9 @@ export const PROJECTS: ReadonlyArray<Project> = [
       "Overfit sanity checks on a deliberately tiny subset before any full run — if the model cannot memorise 20 pairs, the training loop is wrong, not the data",
       "Memorisation evaluation kept separate from retrieval evaluation, so a strong test number cannot quietly be train-set leakage",
       "Embedding health graded honestly as ANISOTROPIC rather than rounded up to healthy — an earlier checkpoint had claimed healthy on worse numbers, and the write-up documents how that happened",
-      "36 test modules spanning data pipeline, models, training, evaluation, and the serving backend, plus Vitest coverage on the front end",
+      "553 Python tests across 35 modules spanning data pipeline, models, training, evaluation, and the serving backend, plus Vitest coverage on the front end",
+      "Official Flickr30k split by image id (29,783/1,000/1,000, the Karpathy/Gong convention) persisted as an auditable manifest, so train/val/test agree without a shared runtime",
+      "Production serving hardening: a scrape-ready Prometheus-format /metrics endpoint, configurable CPU/GPU inference, a concurrent load-testing tool, and a pre-launch go-live checklist",
       "Chance-corrected metrics throughout: the reported baseline accounts for an image having five valid captions instead of one",
     ],
     overview:
